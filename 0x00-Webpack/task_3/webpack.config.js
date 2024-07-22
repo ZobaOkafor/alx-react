@@ -14,22 +14,12 @@ module.exports = {
   },
   mode: 'development',
   devServer: {
-    contentBase: './public',
+    contentBase: path.join(__dirname, 'public'),
     port: 8564,
     open: true
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
