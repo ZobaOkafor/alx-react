@@ -1,3 +1,3 @@
-# 0x02 React Component
+# 0x03 React Component
 
-- This directory houses solution to ALX-SE tasks on react component.
+- This directory houses solution to ALX-SE tasks on React Component.
