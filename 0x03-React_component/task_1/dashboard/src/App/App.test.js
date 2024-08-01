@@ -1,40 +1,58 @@
-import { shallow } from 'enzyme';
 import React from 'react';
-import App from './App';
+import App from "./App";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Login from '../Login/Login';
+import Notifications from '../Notifications/Notifications';
+import { shallow, mount } from 'enzyme';
+import CourseList from '../CourseList/CourseList';
+import { listCourses } from './App';
 
-describe('<App />', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<App />);
-  });
 
-  it('contain Notifications component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find('Notifications')).toHaveLength(1);
-  });
+let wrapper = shallow(<App />);
+describe('App Component', () => {
+  it("renders without crashing", () => {
+    wrapper
+  })
+1
+  it("should contain the Notifications component", () => {
+   expect(wrapper.find(<Notifications />))
+  })
 
-  it('contain Header component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find('Header')).toHaveLength(1);
-  });
+  it("should contain the Header component", () => {
+    expect(wrapper.find(<Header />))
+  })
 
-  it('contain Login component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find('Login')).toHaveLength(1);
-  });
+  it("should contain the Login component", () => {
+    expect(wrapper.find(<Login />))
+   })
 
-  it('contain Footer component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find('Footer')).toHaveLength(1);
-  });
+  it("should contain the Footer component", () => {
+    expect(wrapper.find(<Footer />))
+   })
 
-  it('CourseList', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find('CourseList')).toHaveLength(0);
-  });
+  it("does not render CourseList component", () => {
+    expect(wrapper.containsMatchingElement(<CourseList/>)).toEqual(false)
+  })
 
-  it('isLoggedIn true', () => {
-    const wrapper = shallow(<App isLoggedIn />);
-    expect(wrapper.find('Login')).toHaveLength(0);
-    expect(wrapper.find('CourseList')).toHaveLength(1);
-  });
-});
+  // it('alerts and calls func', () =>{
+  //   const spy = jest.spyOn(App.prototype, 'alert')
+  //   const wrap = mount(<App logOut={()=>console.log('test')}/>)
+  //   // console.log(App.prototype.alert())
+  //   // console.log(wrap.alert())
+  //   const event = new KeyboardEvent('keydown', {key:'h', ctrlKey: true})
+  //   console.log(document.dispatchEvent(event))
+  //   // console.log(wrap.html())
+  // })
+})
+
+const wrapper_isLoggedIn = shallow(<App isLoggedIn={true}/>);
+describe('App Component when isLoggedin is true', () => {
+  it("does not render Login component", () => {
+    expect(wrapper_isLoggedIn.containsMatchingElement(<Login/>)).toEqual(false)
+  })
+
+  it("renders CourseList component", () => {
+    expect(wrapper_isLoggedIn.containsMatchingElement(<CourseList listCourses={listCourses}/>)).toEqual(true)
+  })
+})
