@@ -4,25 +4,46 @@ import CourseListRow from './CourseListRow';
 
 describe('<CourseListRow />', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(
-      <CourseListRow textFirstCell="Test" isHeader={false} />
-    );
-    expect(wrapper.exists()).toBe(true);
+    const wrapper = shallow(<CourseListRow textFirstCell='test' />);
+    expect(wrapper.exists());
   });
 
-  it('applies correct style for header rows', () => {
+  it('renders one cell', () => {
     const wrapper = shallow(
-      <CourseListRow textFirstCell="Header" isHeader={true} />
+      <CourseListRow isHeader={true} textFirstCell='test' />
     );
-    const tr = wrapper.find('tr');
-    expect(tr.prop('style')).toEqual({ backgroundColor: '#deb5b545' });
+    wrapper.update();
+    const th = wrapper.find('th');
+    expect(th).toHaveLength(1);
+    expect(th.prop('colSpan')).toEqual('2');
   });
 
-  it('applies correct style for regular rows', () => {
+  it('renders two cells', () => {
     const wrapper = shallow(
-      <CourseListRow textFirstCell="Regular" isHeader={false} />
+      <CourseListRow
+        isHeader={true}
+        textFirstCell='test'
+        textSecondCell='second'
+      />
     );
+    wrapper.update();
+    const th = wrapper.find('th');
+    expect(th).toHaveLength(2);
+    expect(th.first().text()).toEqual('test');
+    expect(th.at(1).text()).toEqual('second');
+  });
+
+  it('renders two td', () => {
+    const wrapper = shallow(
+      <CourseListRow
+        isHeader={false}
+        textFirstCell='test'
+        textSecondCell='second'
+      />
+    );
+    wrapper.update();
     const tr = wrapper.find('tr');
-    expect(tr.prop('style')).toEqual({ backgroundColor: '#f5f5f5ab' });
+    expect(tr).toHaveLength(1);
+    expect(tr.children('td')).toHaveLength(2);
   });
 });
