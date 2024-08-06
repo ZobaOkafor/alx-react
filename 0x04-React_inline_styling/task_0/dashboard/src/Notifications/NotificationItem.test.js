@@ -22,6 +22,25 @@ describe('<NotificationItem />', () => {
       <NotificationItem html={{ __html: '<u>test</u>' }} />
     );
     const li = wrapper.find('li');
-    expect(li.html()).toEqual('<li><u>test</u></li>');
+    expect(li.html()).toEqual(
+      '<li data-notification-type="default"><u>test</u></li>'
+    );
   });
 });
+/*
+describe('markAsRead', () => {
+  it('markAsRead message', () => {
+    const id = 16;
+    const wrapper = shallow(
+      <NotificationItem type='default' value='test' id={id} />
+    );
+    const instance = wrapper.instance();
+    instance.markAsRead = jest.fn();
+    const listItem = wrapper.find('li').first();
+    listItem.simulate('click');
+    instance.markAsRead(id);
+    expect(instance.markAsRead).toHaveBeenCalledWith(16);
+    jest.restoreAllMocks();
+  });
+});
+*/
