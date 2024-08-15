@@ -2,6 +2,8 @@ import { List, Map } from 'immutable';
 
 // Concatenates two arrays and returns a List containing their values
 export function concatElements(page1, page2) {
+  const list1 = List(page1);
+  const list2 = List(page2);
   return List(page1).concat(List(page2));
 }
 
