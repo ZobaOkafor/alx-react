@@ -7,3 +7,4 @@ This repository houses solution to ALX-SE tasks on React in the following topics
 - 0x03-React_component
 - 0x04-React_inline_styling
 - 0x05-react_state
+- 0x06-React_Immutable
