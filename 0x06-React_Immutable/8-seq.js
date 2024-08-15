@@ -4,7 +4,7 @@ import { Seq } from 'immutable';
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 // Filters and prints students with scores >= 70, with capitalized names
-export function printBestStudents(grades) {
+export default function printBestStudents(grades) {
   const bestStudents = Seq(grades)
     .filter(student => student.score >= 70)
     .map(student => ({
