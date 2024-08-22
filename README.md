@@ -8,3 +8,5 @@ This repository houses solution to ALX-SE tasks on React in the following topics
 - 0x04-React_inline_styling
 - 0x05-react_state
 - 0x06-React_Immutable
+- 0x07-react_redux_action_creator_normalizr
+- 0x08-react_redux_reducer_selector
